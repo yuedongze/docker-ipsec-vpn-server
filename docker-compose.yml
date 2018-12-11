@@ -6,9 +6,7 @@ services:
     restart: always
     env_file:
       - ./vpn.env
-    ports:
-      - "500:500/udp"
-      - "4500:4500/udp"
+    network_mode: "host"
     privileged: true
     hostname: ipsec-vpn-server
     container_name: ipsec-vpn-server
