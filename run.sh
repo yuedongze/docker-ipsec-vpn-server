@@ -275,9 +275,10 @@ $SYST net.ipv4.conf.eth0.rp_filter=0
 iptables -I INPUT 1 -p udp --dport 1701 -m policy --dir in --pol none -j DROP
 iptables -I INPUT 2 -m conntrack --ctstate INVALID -j DROP
 iptables -I INPUT 3 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-iptables -I INPUT 4 -p udp -m multiport --dports 500,4500 -j ACCEPT
-iptables -I INPUT 5 -p udp --dport 1701 -m policy --dir in --pol ipsec -j ACCEPT
-iptables -I INPUT 6 -p udp --dport 1701 -j DROP
+iptables -I INPUT 4 -p tcp -m state --state NEW --source 192.168.42.0/24 -j ACCEPT
+iptables -I INPUT 5 -p udp -m multiport --dports 500,4500 -j ACCEPT
+iptables -I INPUT 6 -p udp --dport 1701 -m policy --dir in --pol ipsec -j ACCEPT
+iptables -I INPUT 7 -p udp --dport 1701 -j DROP
 iptables -I FORWARD 1 -m conntrack --ctstate INVALID -j DROP
 iptables -I FORWARD 2 -i eth+ -o ppp+ -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 iptables -I FORWARD 3 -i ppp+ -o eth+ -j ACCEPT
