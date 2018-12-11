@@ -262,6 +262,10 @@ The ports that are exposed for this container to work are:
 
 * 4500/udp and 500/udp for IPsec
 
+## SSH Port Forwarding
+
+In order to enable global port forwarding for ssh. We need to modify `/etc/ssh/sshd_config` and set `GatewayPorts yes`
+
 ## See also
 
 * [IPsec VPN Server on Ubuntu, Debian and CentOS](https://github.com/hwdsl2/setup-ipsec-vpn)
